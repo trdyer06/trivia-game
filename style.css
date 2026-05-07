@@ -1,0 +1,34 @@
+body {
+    background-color: #222222;
+    color: aqua;
+}
+
+h1 {
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    align-items: center;;
+}
+
+.question {
+    width: 50%;
+    margin-left: 25%;
+    border: 2px solid aqua;
+    text-align: center;
+}
+
+.answer {
+    width: 100%;
+    height: 40px;
+    border-top: 1px solid aqua;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.answer:hover {
+    background-color: #444444;
+    color: aqua;
+    cursor: pointer;
+}
