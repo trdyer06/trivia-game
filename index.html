@@ -7,24 +7,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Trivia Game</h1>
-    <div id="header">
-        <h2>Question 1</h2>
-        <h2>Time: 20</h2>
+    <div id="startScreen">
+        <h1>Welcome to the Trivia Game!</h1>
+        <button id="startButton">Start Game</button>
     </div>
-    <div id="qAndA">
-        <div id="question">
-            <h3>Who painted the Mona Lisa?</h3>
-            <h4>(2 points)</h4>
+    <div id ="gameScreen" class="hidden">
+        <h1>Trivia Game</h1>
+        <div id="header">
+            <h2>Question #</h2>
+            <h2 id="time">Time: 5</h2>
         </div>
+        <div id="qAndA">
+            <div id="question">
+                <h3>Question Text</h3>
+                <h4>(Question Points)</h4>
+            </div>
             <div id="answers">
-                <button class="answer">Leonardo Da Vinci</button>
-                <button class="answer">Michelangelo</button>
-                <button class="answer">Raphael</button>
-                <button class="answer">Donatello</button>
+                <button class="answer">Answer 1</button>
+                <button class="answer">Answer 2</button>
+                <button class="answer">Answer 3</button>
+                <button class="answer">Answer 4</button>
             </div>
         </div>
+        <h2 id="score">Score: 0</h2>
     </div>
-    <h2 id="score">Score: 0</h2>
+    <div id="endScreen" class="hidden">
+        <h1>Game Over!</h1>
+        <h2 id="finalScore">Final Score: 0</h2>
+        <button id="restartButton">Play Again</button>
+        <h3 id="highScore">High Score: 0</h3>
+    </div>
 </body>
+<script src="script.js"></script>
 </html>
