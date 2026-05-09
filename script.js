@@ -1,87 +1,56 @@
 let timeInterval;
 let currentQuestionIndex = 0;
 
-const questions = [ {
-    question: 'Who painted the Mona Lisa?',
-    answers: [
-        'Leonardo Da Vinci',
-        'Michelangelo',
-        'Raphael',
-        'Donatello'
-    ],
-    correctAnswer: 'Leonardo Da Vinci',
-    points: 2
-}, {
-    question: 'Which chemical element, number 11 in the Periodic table, has the symbol Na?',
-    answers: [
-        'Sodium',
-        'Nickel',
-        'Neon',
-        'Nobelium'
-    ],
-    correctAnswer: 'Sodium',
-    points: 2
-}, {
-    question: 'Gouda cheese is from which European country?',
-    answers: [
-        'Switzerland',
-        'Belgium',
-        'Netherlands',
-        'Denmark'
-    ],
-    correctAnswer: 'Netherlands',
-    points: 3
-}, {
-    question: 'Xanthophobia is the fear of what color?',
-    answers: [
-        'Blue',
-        'Yellow',
-        'Green',
-        'Red'
-    ],
-    correctAnswer: 'Yellow',
-    points: 4
-}, {
-    question: 'Who is the origin of the quote "What doesn\'t kill you makes you stronger"?',
-    answers: [
-        'Taylor Swift',
-        'Aristotle',
-        'John Cena',
-        'Freidrich Nietzsche'
-    ],
-    correctAnswer: 'Freidrich Nietzsche',
-    points: 3
-}];
+let myQuestions = [];
+
+const loadQuestions = async () => {
+    const response = await fetch('https://opentdb.com/api.php?amount=50&category=9&type=multiple');
+    const data = await response.json();
+    myQuestions = data.results.map(item => {
+        let pts = 2;
+        if(item.difficulty === 'medium') {
+            pts = 3;
+        } else if(item.difficulty === 'hard') {
+            pts = 4;
+        }
+        return {
+            question: item.question,
+            answers: [...item.incorrect_answers, item.correct_answer].sort(() => Math.random() - 0.5),
+            correctAnswer: item.correct_answer,
+            difficulty: item.difficulty,
+            points: pts
+        };
+    });
+    askQuestions();
+};
+
 
 let buttons = document.querySelectorAll('.answer');
 
 const printQuestion = () => {
     let questionText = document.querySelector('#question h3');
     let questionPoints = document.querySelector('#question h4');
-    questionText.textContent = questions[currentQuestionIndex].question;
-    questionPoints.textContent = `(${questions[currentQuestionIndex].points} points)`;
+    questionText.innerHTML = myQuestions[currentQuestionIndex].question;
+    questionPoints.textContent = `( ${myQuestions[currentQuestionIndex].points} points )`;
 };
 
 const printAnswers = () => {
     let answerButtons = document.querySelectorAll('.answer');
     answerButtons.forEach((button, index) => {
-        button.textContent = questions[currentQuestionIndex].answers[index];
-    });
-    buttons.forEach(button => {
-        button.addEventListener('click', checkAnswer);
+        button.innerHTML = myQuestions[currentQuestionIndex].answers[index];
     });
 };
 
 const checkAnswer = event => {
     let selected = event.target.textContent;
-    if(selected === questions[currentQuestionIndex].correctAnswer) {
+    if(selected === myQuestions[currentQuestionIndex].correctAnswer) {
         let currentScore = document.getElementById('score').textContent;
         let scoreValue = Number(currentScore.substring(7));
-        scoreValue += questions[currentQuestionIndex].points;
+        scoreValue += myQuestions[currentQuestionIndex].points;
         document.getElementById('score').textContent = `Score: ${scoreValue}`;
     }
     currentQuestionIndex += 1;
-    if(currentQuestionIndex < questions.length) {
+    if(currentQuestionIndex < myQuestions.length) {
         askQuestions();
     } else {
         finishGame();
@@ -117,7 +86,7 @@ const askQuestions = () => {
 
 const finishGame = () => {
     clearInterval(timeInterval);
-    document.getElementById('time').textContent = 'Time: 5';
+    document.getElementById('time').textContent = 'Time: 30';
     let gameScreen = document.getElementById('gameScreen');
     let endScreen = document.getElementById('endScreen');
     gameScreen.classList.add('hidden');
@@ -136,5 +105,9 @@ const finishGame = () => {
     restartButton.addEventListener('click', startGame);
 };
 
+loadQuestions();
 let startButton = document.getElementById('startButton');
 startButton.addEventListener('click', startGame);
+buttons.forEach(button => {
+    button.addEventListener('click', checkAnswer);
+});
