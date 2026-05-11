@@ -69,6 +69,14 @@ const changeTime = () => {
 };
 
 const pickCategory = event => {
+    let startScreen = document.getElementById('startScreen');
+    let gameScreen = document.getElementById('gameScreen');
+    let endScreen = document.getElementById('endScreen');
+    let categories = document.getElementById('categories');
+    startScreen.classList.add('hidden');
+    gameScreen.classList.add('hidden');
+    endScreen.classList.add('hidden');
+    categories.classList.remove('hidden');
     let category = event.target.textContent;
     if(category === 'General Knowledge') {
         loadQuestions('https://opentdb.com/api.php?amount=50&category=9&type=multiple');
@@ -81,9 +89,7 @@ const pickCategory = event => {
     } else if(category === 'Geography') {
         loadQuestions('https://opentdb.com/api.php?amount=50&category=22&type=multiple');
     }
-    let categories = document.getElementById('categories');
     categories.classList.add('hidden');
-    let startScreen = document.getElementById('startScreen');
     startScreen.classList.remove('hidden');
 };
 
@@ -123,10 +129,20 @@ const finishGame = () => {
     document.getElementById('score').textContent = 'Score: 0';
     let restartButton = document.getElementById('restartButton');
     restartButton.addEventListener('click', startGame);
+    let categoriesButton = document.getElementById('changeCategoryButton');
+    categoriesButton.addEventListener('click', function() {
+        let endScreen = document.getElementById('endScreen');
+        endScreen.classList.add('hidden');
+        let categories = document.getElementById('categories');
+        categories.classList.remove('hidden');
+        categories.addEventListener('click', pickCategory);
+    });
 };
 
-let categories = document.getElementById('categories');
-categories.addEventListener('click', pickCategory);
+let categories = document.querySelectorAll('.category');
+categories.forEach(button => {
+    button.addEventListener('click', pickCategory);
+});
 let startButton = document.getElementById('startButton');
 startButton.addEventListener('click', startGame);
 buttons.forEach(button => {
