@@ -24,6 +24,33 @@ body {
     display: none;
 }
 
+#categories h5{
+    width: 100%;
+    text-align: center;
+    color: #00BFFF;
+    font-family: "Jersey 10", sans-serif;
+}
+
+#categories button {
+    width: 50%;
+    height: 50px;
+    border: 2px solid #6809C0;
+    text-align: left;
+    padding-left: 15px;
+    background-color: #8A2BE2;
+    color: #B2F7EF;
+    font-family: "Handjet", sans-serif;
+    font-size: 30px;
+    margin: 0 0 20px 25%;
+}
+
+#categories button:hover {
+    background-color: #6809C0;
+    border: 2px solid #8A2BE2;
+    color: #00FF7F;
+    cursor: pointer;
+}
+
 #startScreen h1 {
     margin-top: 60px;
     color: #00BFFF;
