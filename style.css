@@ -1,21 +1,55 @@
+.jersey-10-regular {
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+.handjet-regular {
+    font-family: "Handjet", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "ELGR" 1,
+    "ELSH" 2;
+}
+
 body {
-    background-color: #222222;
-    color: aqua;
+    background-color: #121212;
+    font-size: 40px;
 }
 
 .hidden {
     display: none;
 }
 
+#startScreen h1 {
+    margin-top: 60px;
+    color: #00BFFF;
+}
+
 #startScreen button, #endScreen button {
     width: 10%;
     height: 60px;
     margin: 50px 45%;
-    border: 2px solid aqua;
+    background-color: #00BFFF;
+    color:#FF6347;
+    border: 2px solid #008CCC;
+    font-family: "Jersey 10", sans-serif;
+    font-size: 35px;
+}
+
+#startScreen button:hover, #endScreen button:hover {
+    background-color: #008CCC;
+    border: 2px solid #00BFFF;
+    cursor: pointer;
 }
 
 h1 {
     text-align: center;
+    font-family: "Jersey 10", sans-serif;
+    color:#00BFFF;
 }
 
 #header {
@@ -23,58 +57,74 @@ h1 {
     margin-left: 25%;
     display: flex;
     align-items: center;
+    color: #00BFFF;
 }
 
-#header h2 {
-    width: 50%;
+#time {
+    width: 100%;
     text-align: center;
+    font-family: "Handjet", sans-serif;
 }
 
 #qAndA {
     width: 50%;
     margin-left: 25%;
-    border: 2px solid aqua;
+    border: 2px solid #00BFFF;
     text-align: center;
+    color:#00BFFF;
 }
 
 #question {
     width: 100%;
-    height: 40px;
+    height: auto;
     display: flex;
     align-items: center;
+    background-color: #FF69B4;
+    font-family: "Handjet", sans-serif;
+    font-size: 30px;
 }
 
 #question h3 {
     width: 75%;
     text-align: center;
+    color: #B2F7EF;
 }
 
 #question h4 {
     width: 25%;
     text-align: right;
-    padding-right: 10px;
+    padding-right: 15px;
+    color: #00FF7F;
 }
 
 .answer {
     width: 100%;
-    height: 40px;
-    border-top: 1px solid aqua;
+    height: 50px;
+    border: 2px solid #6809C0;
     text-align: left;
     padding-left: 15px;
+    background-color: #8A2BE2;
+    color: #B2F7EF;
+    font-family: "Handjet", sans-serif;
+    font-size: 30px;
 }
 
-button:hover {
-    background-color: #444444;
-    color: aqua;
+.answer:hover {
+    background-color: #6809C0;
+    border: 2px solid #8A2BE2;
+    color: #00FF7F;
     cursor: pointer;
 }
 
 #score {
     text-align: center;
     margin-top: 40px;
+    color:#00BFFF;
 }
 
 #finalScore, #highScore {
     text-align: center;
     margin-top: 20px;
+    color:#00BFFF;
+    font-family: "Handjet", sans-serif;
 }
