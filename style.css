@@ -35,13 +35,14 @@ body {
     margin: 50px 45%;
     background-color: #00BFFF;
     color:#FF6347;
-    border: 2px solid #00BFFF;
+    border: 2px solid #008CCC;
     font-family: "Jersey 10", sans-serif;
     font-size: 35px;
 }
 
 #startScreen button:hover, #endScreen button:hover {
-    background-color: #8A2BE2;
+    background-color: #008CCC;
+    border: 2px solid #00BFFF;
     cursor: pointer;
 }
 
@@ -59,9 +60,10 @@ h1 {
     color: #00BFFF;
 }
 
-#header h2 {
-    width: 50%;
+#time {
+    width: 100%;
     text-align: center;
+    font-family: "Handjet", sans-serif;
 }
 
 #qAndA {
@@ -97,14 +99,21 @@ h1 {
 
 .answer {
     width: 100%;
-    height: 40px;
-    border-top: 1px solid #FF6347;
+    height: 50px;
+    border: 2px solid #6809C0;
     text-align: left;
     padding-left: 15px;
     background-color: #8A2BE2;
     color: #B2F7EF;
     font-family: "Handjet", sans-serif;
     font-size: 30px;
+}
+
+.answer:hover {
+    background-color: #6809C0;
+    border: 2px solid #8A2BE2;
+    color: #00FF7F;
+    cursor: pointer;
 }
 
 #score {
