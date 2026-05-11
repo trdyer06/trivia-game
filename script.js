@@ -4,7 +4,7 @@ let currentQuestionIndex = 0;
 let myQuestions = [];
 
 const loadQuestions = async () => {
-    const response = await fetch('https://opentdb.com/api.php?amount=50&category=9&type=multiple');
+    const response = await fetch('https://opentdb.com/api.php?amount=50&category=27&type=multiple');
     const data = await response.json();
     myQuestions = data.results.map(item => {
         let pts = 2;
@@ -80,6 +80,7 @@ const startGame = event => {
 }
 
 const askQuestions = () => {
+    myQuestions.sort(() => Math.random() - 0.5);
     printQuestion();
     printAnswers();
 }
