@@ -27,8 +27,9 @@ body {
 #categories h5{
     width: 100%;
     text-align: center;
-    color: #00BFFF;
-    font-family: "Jersey 10", sans-serif;
+    color: #E0B0FF;
+    font-family: "Handjet", sans-serif;
+    font-size: 40px;
 }
 
 #categories button {
@@ -61,15 +62,16 @@ body {
     height: 60px;
     margin: 50px 45%;
     background-color: #00BFFF;
-    color:#FF6347;
+    color: #6809C0;
     border: 2px solid #008CCC;
     font-family: "Jersey 10", sans-serif;
     font-size: 35px;
 }
 
-#startScreen button:hover, #endScreen button:hover, #changeCategoryButton:hover {
+#startButton:hover, #endScreen button:hover {
     background-color: #008CCC;
     border: 2px solid #00BFFF;
+    color: #FF69B4;
     cursor: pointer;
 }
 
@@ -172,7 +174,7 @@ h1 {
 #finalScore, #highScore {
     text-align: center;
     margin-top: 20px;
-    color:#00BFFF;
+    color:#E0B0FF;
     font-family: "Handjet", sans-serif;
 }
 
@@ -181,7 +183,7 @@ h1 {
     height: 60px;
     margin: 20px 44%;
     background-color: #00BFFF;
-    color:#FF6347;
+    color: #6809C0;
     border: 2px solid #008CCC;
     font-family: "Jersey 10", sans-serif;
     font-size: 30px;
