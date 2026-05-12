@@ -94,16 +94,35 @@ const printAnswers = () => {
 const checkAnswer = event => {
     let selected = event.target.textContent;
     if(selected === myQuestions[currentQuestionIndex].correctAnswer) {
+        correctMessage(true);
         let currentScore = document.getElementById('score').textContent;
         let scoreValue = Number(currentScore.substring(7));
         scoreValue += myQuestions[currentQuestionIndex].points;
         document.getElementById('score').textContent = `Score: ${scoreValue}`;
+    } else {
+        correctMessage(false);
     }
     currentQuestionIndex += 1;
     if(currentQuestionIndex < myQuestions.length) {
         askQuestions();
     } else {
         finishGame();
+    }
+};
+
+const correctMessage = correct => {
+    if(correct === true) {
+        let message = document.getElementById('correct');
+        message.classList.remove('hidden');
+        setTimeout(() => {
+            message.classList.add('hidden');
+        }, 1000);
+    } else {
+        let message = document.getElementById('wrong');
+        message.classList.remove('hidden');
+        setTimeout(() => {
+            message.classList.add('hidden');
+        }, 1000);
     }
 };
 
