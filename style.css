@@ -87,8 +87,27 @@ h1 {
     color: #00BFFF;
 }
 
-#time {
+#message {
+    width: 25%;
+    display: flex;
+}
+
+#correct {
     width: 100%;
+    text-align: center;
+    font-family: "Handjet", sans-serif;
+    color: #12b600;
+}
+    
+#wrong {
+    width: 100%;
+    text-align: center;
+    font-family: "Handjet", sans-serif;
+    color: #FF0000;
+}
+
+#time {
+    width: 50%;
     text-align: center;
     font-family: "Handjet", sans-serif;
 }
@@ -146,6 +165,7 @@ h1 {
 #score {
     text-align: center;
     margin-top: 40px;
+    font-family: "Handjet", sans-serif;
     color:#00BFFF;
 }
 
