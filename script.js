@@ -3,6 +3,8 @@ let currentQuestionIndex = 0;
 
 let myQuestions = [];
 
+//before game ----------------------------------------------------------------------------------------------
+
 const loadQuestions = async (questionLink) => {
     const response = await fetch(questionLink);
     const data = await response.json();
@@ -24,8 +26,56 @@ const loadQuestions = async (questionLink) => {
     askQuestions();
 };
 
+const pickCategory = event => {
+    let gameScreen = document.getElementById('gameScreen');
+    let endScreen = document.getElementById('endScreen');
+    let categories = document.getElementById('categories');
+    gameScreen.classList.add('hidden');
+    endScreen.classList.add('hidden');
+    categories.classList.remove('hidden');
+    let category = event.target.textContent;
+    if(category === 'General Knowledge') {
+        loadQuestions('https://opentdb.com/api.php?amount=50&category=9&type=multiple');
+    } else if(category === 'Sports') {
+        loadQuestions('https://opentdb.com/api.php?amount=50&category=21&type=multiple');
+    } else if(category === 'Animals') {
+        loadQuestions('https://opentdb.com/api.php?amount=50&category=27&type=multiple');
+    } else if(category === 'History') {
+        loadQuestions('https://opentdb.com/api.php?amount=50&category=23&type=multiple');
+    } else if(category === 'Geography') {
+        loadQuestions('https://opentdb.com/api.php?amount=50&category=22&type=multiple');
+    }
+    let startButton = document.getElementById('startButton');
+    startButton.classList.remove('hidden');
+    startButton.addEventListener('click', startGame);
+};
 
-let buttons = document.querySelectorAll('.answer');
+const startGame = event => {
+    timeInterval = setInterval(changeTime, 1000);
+    let startScreen = document.getElementById('startScreen');
+    let gameScreen = document.getElementById('gameScreen');
+    let endScreen = document.getElementById('endScreen');
+    let categories = document.getElementById('categories');
+    let startButton = document.getElementById('startButton');
+    startScreen.classList.add('hidden');
+    gameScreen.classList.remove('hidden');
+    endScreen.classList.add('hidden');
+    categories.classList.add('hidden');
+    startButton.classList.add('hidden');
+    let buttons = document.querySelectorAll('.answer');
+    buttons.forEach(button => {
+        button.addEventListener('click', checkAnswer);
+    });
+    askQuestions();
+}
+
+//during game ----------------------------------------------------------------------------------------------
+
+const askQuestions = () => {
+    myQuestions.sort(() => Math.random() - 0.5);
+    printQuestion();
+    printAnswers();
+}
 
 const printQuestion = () => {
     let questionText = document.querySelector('#question h3');
@@ -68,47 +118,7 @@ const changeTime = () => {
     }
 };
 
-const pickCategory = event => {
-    let startScreen = document.getElementById('startScreen');
-    let gameScreen = document.getElementById('gameScreen');
-    let endScreen = document.getElementById('endScreen');
-    let categories = document.getElementById('categories');
-    startScreen.classList.add('hidden');
-    gameScreen.classList.add('hidden');
-    endScreen.classList.add('hidden');
-    categories.classList.remove('hidden');
-    let category = event.target.textContent;
-    if(category === 'General Knowledge') {
-        loadQuestions('https://opentdb.com/api.php?amount=50&category=9&type=multiple');
-    } else if(category === 'Sports') {
-        loadQuestions('https://opentdb.com/api.php?amount=50&category=21&type=multiple');
-    } else if(category === 'Animals') {
-        loadQuestions('https://opentdb.com/api.php?amount=50&category=27&type=multiple');
-    } else if(category === 'History') {
-        loadQuestions('https://opentdb.com/api.php?amount=50&category=23&type=multiple');
-    } else if(category === 'Geography') {
-        loadQuestions('https://opentdb.com/api.php?amount=50&category=22&type=multiple');
-    }
-    categories.classList.add('hidden');
-    startScreen.classList.remove('hidden');
-};
-
-const startGame = event => {
-    timeInterval = setInterval(changeTime, 1000);
-    let startScreen = document.getElementById('startScreen');
-    let gameScreen = document.getElementById('gameScreen');
-    let endScreen = document.getElementById('endScreen');
-    startScreen.classList.add('hidden');
-    gameScreen.classList.remove('hidden');
-    endScreen.classList.add('hidden');
-    askQuestions();
-}
-
-const askQuestions = () => {
-    myQuestions.sort(() => Math.random() - 0.5);
-    printQuestion();
-    printAnswers();
-}
+//after game ----------------------------------------------------------------------------------------------
 
 const finishGame = () => {
     clearInterval(timeInterval);
@@ -135,16 +145,15 @@ const finishGame = () => {
         endScreen.classList.add('hidden');
         let categories = document.getElementById('categories');
         categories.classList.remove('hidden');
-        categories.addEventListener('click', pickCategory);
+        categories.forEach(button => {
+            button.addEventListener('click', pickCategory);
+        });
     });
 };
+
+//run game ----------------------------------------------------------------------------------------------
 
 let categories = document.querySelectorAll('.category');
 categories.forEach(button => {
     button.addEventListener('click', pickCategory);
-});
-let startButton = document.getElementById('startButton');
-startButton.addEventListener('click', startGame);
-buttons.forEach(button => {
-    button.addEventListener('click', checkAnswer);
 });
