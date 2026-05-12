@@ -143,11 +143,11 @@ const finishGame = () => {
     categoriesButton.addEventListener('click', function() {
         let endScreen = document.getElementById('endScreen');
         endScreen.classList.add('hidden');
+        let startScreen = document.getElementById('startScreen');
+        startScreen.classList.remove('hidden');
         let categories = document.getElementById('categories');
         categories.classList.remove('hidden');
-        categories.forEach(button => {
-            button.addEventListener('click', pickCategory);
-        });
+        categories.addEventListener('click', pickCategory);
     });
 };
 
