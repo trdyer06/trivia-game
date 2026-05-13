@@ -94,13 +94,19 @@ const printAnswers = () => {
 const checkAnswer = event => {
     let selected = event.target.textContent;
     if(selected === myQuestions[currentQuestionIndex].correctAnswer) {
-        correctMessage(true);
+        document.body.classList.add('flash-correct');
+        setTimeout(() => {
+            document.body.classList.remove('flash-correct');
+        }, 750);
         let currentScore = document.getElementById('score').textContent;
         let scoreValue = Number(currentScore.substring(7));
         scoreValue += myQuestions[currentQuestionIndex].points;
         document.getElementById('score').textContent = `Score: ${scoreValue}`;
     } else {
-        correctMessage(false);
+        document.body.classList.add('flash-wrong');
+        setTimeout(() => {
+            document.body.classList.remove('flash-wrong');
+        }, 750);
     }
     currentQuestionIndex += 1;
     if(currentQuestionIndex < myQuestions.length) {
@@ -127,11 +133,22 @@ const correctMessage = correct => {
 };
 
 const changeTime = () => {
-    let time = document.getElementById('time').textContent;
-    let timeValue = Number(time.substring(6));
+    let time = document.getElementById('time');
+    let timeValue = Number(time.textContent.substring(6));
     if(timeValue > 1) {
         timeValue -= 1;
-        document.getElementById('time').textContent = `Time: ${timeValue}`;
+        time.textContent = `Time: ${timeValue}`;
+        if(timeValue >= 24) {
+            time.style.color = '#12B600';
+        } else if(timeValue >= 18) {
+            time.style.color = '#84e32b';
+        } else if(timeValue >= 12) {
+            time.style.color = '#FFFF00';
+        } else if(timeValue >= 6) {
+            time.style.color = '#ffa200';
+        } else {
+            time.style.color = '#FF0000';
+        }
     } else {
         finishGame();
     }
