@@ -169,6 +169,7 @@ const finishGame = () => {
     }
     document.getElementById('longestStreak').textContent = 'Longest Streak: ' + longestStreak;
     longestStreak = 0;
+    document.getElementById('streak').textContent = 'Streak: 0';
     document.getElementById('score').textContent = 'Score: 0';
     let restartButton = document.getElementById('restartButton');
     restartButton.addEventListener('click', startGame);
