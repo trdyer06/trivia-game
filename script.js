@@ -1,5 +1,6 @@
 let timeInterval;
 let currentQuestionIndex = 0;
+let longestStreak = 0;
 
 let myQuestions = [];
 
@@ -93,6 +94,8 @@ const printAnswers = () => {
 
 const checkAnswer = event => {
     let selected = event.target.textContent;
+    let currentStreak = document.getElementById('streak').textContent;
+    let streakValue = Number(currentStreak.substring(8));
     if(selected === myQuestions[currentQuestionIndex].correctAnswer) {
         document.body.classList.add('flash-correct');
         setTimeout(() => {
@@ -102,33 +105,23 @@ const checkAnswer = event => {
         let scoreValue = Number(currentScore.substring(7));
         scoreValue += myQuestions[currentQuestionIndex].points;
         document.getElementById('score').textContent = `Score: ${scoreValue}`;
+        streakValue += 1;
+        if(streakValue > longestStreak) {
+            longestStreak = streakValue;
+        }
     } else {
         document.body.classList.add('flash-wrong');
         setTimeout(() => {
             document.body.classList.remove('flash-wrong');
         }, 750);
+        streakValue = 0;
     }
+    document.getElementById('streak').textContent = `Streak: ${streakValue}`;
     currentQuestionIndex += 1;
     if(currentQuestionIndex < myQuestions.length) {
         askQuestions();
     } else {
         finishGame();
-    }
-};
-
-const correctMessage = correct => {
-    if(correct === true) {
-        let message = document.getElementById('correct');
-        message.classList.remove('hidden');
-        setTimeout(() => {
-            message.classList.add('hidden');
-        }, 1000);
-    } else {
-        let message = document.getElementById('wrong');
-        message.classList.remove('hidden');
-        setTimeout(() => {
-            message.classList.add('hidden');
-        }, 1000);
     }
 };
 
@@ -158,7 +151,9 @@ const changeTime = () => {
 
 const finishGame = () => {
     clearInterval(timeInterval);
-    document.getElementById('time').textContent = 'Time: 30';
+    let time = document.getElementById('time');
+    time.textContent = 'Time: 30';
+    time.style.color = '#12B600';
     let gameScreen = document.getElementById('gameScreen');
     let endScreen = document.getElementById('endScreen');
     gameScreen.classList.add('hidden');
@@ -172,6 +167,8 @@ const finishGame = () => {
     if(Number(finalScoreValue) > highScoreValue) {
         highScore.textContent = `High Score: ${finalScoreValue}`;
     }
+    document.getElementById('longestStreak').textContent = 'Longest Streak: ' + longestStreak;
+    longestStreak = 0;
     document.getElementById('score').textContent = 'Score: 0';
     let restartButton = document.getElementById('restartButton');
     restartButton.addEventListener('click', startGame);
