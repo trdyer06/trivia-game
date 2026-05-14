@@ -65,6 +65,7 @@ const pickCategory = event => {
     } else if(category === 'Geography') {
         loadQuestions('https://opentdb.com/api.php?amount=50&category=22&type=multiple');
     }
+    //hide category buttons after once is selected
     categories.classList.add('hidden');
     let selectedCategory = document.getElementById('selectedCategory');
     //show the selected category above the start button
@@ -76,7 +77,7 @@ const pickCategory = event => {
         //hide all elements on the end screen
         child.classList.add('hidden');
     });
-    //show only change category button to change the category for the next game
+    //show the change category button to change the category for the next game
     categoriesButton.classList.remove('hidden');
     endScreen.classList.remove('hidden');
 };
@@ -91,12 +92,10 @@ const startGame = event => {
     let startScreen = document.getElementById('startScreen');
     let gameScreen = document.getElementById('gameScreen');
     let endScreen = document.getElementById('endScreen');
-    let categories = document.getElementById('categories');
     //only show the game screen and hide all other screens
     startScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
     endScreen.classList.add('hidden');
-    categories.classList.add('hidden');
     Array.from(endScreen.children).forEach(child => {
         //unhide all elements on the end screen
         child.classList.remove('hidden');
