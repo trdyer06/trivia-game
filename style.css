@@ -51,7 +51,7 @@ body {
     display: none;
 }
 
-#categories h5{
+#categories h5, #selectedCategory {
     width: 100%;
     text-align: center;
     color: #E0B0FF;
