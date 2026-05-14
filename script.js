@@ -64,15 +64,9 @@ const pickCategory = event => {
     } else if(category === 'Geography') {
         loadQuestions('https://opentdb.com/api.php?amount=50&category=22&type=multiple');
     }
-    let categoryButtons = document.querySelectorAll('.category');
-    //if another category is selected load the questions for that category
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', pickCategory);
-    });
     let startButton = document.getElementById('startButton');
-    //make start button visible and start game when clicked
+    //show start button to start the game
     startButton.classList.remove('hidden');
-    startButton.addEventListener('click', startGame);
 };
 
 /**
@@ -93,11 +87,8 @@ const startGame = event => {
     endScreen.classList.add('hidden');
     categories.classList.add('hidden');
     startButton.classList.add('hidden');
-    let buttons = document.querySelectorAll('.answer');
-    //add event listener to each answer button to check if the selected answer is correct
-    buttons.forEach(button => {
-        button.addEventListener('click', checkAnswer);
-    });
+    //randomize order of questions
+    myQuestions.sort(() => Math.random() - 0.5);
     //show question and answers
     askQuestions();
 }
@@ -108,8 +99,6 @@ const startGame = event => {
  * Prints questions and answers in random order.
  */
 const askQuestions = () => {
-    //randomize order of questions
-    myQuestions.sort(() => Math.random() - 0.5);
     printQuestion();
     printAnswers();
 }
@@ -244,28 +233,38 @@ const finishGame = () => {
     //reset score and streak for next game
     document.getElementById('streak').textContent = 'Streak: 0';
     document.getElementById('score').textContent = 'Score: 0';
-    let restartButton = document.getElementById('restartButton');
-    //if restart button is clicked start a new game
-    restartButton.addEventListener('click', startGame);
-    let categoriesButton = document.getElementById('changeCategoryButton');
-    //if change category button is clicked show the category screen 
-    categoriesButton.addEventListener('click', function() {
-        //hide end screen and show starting screen and category options
-        let endScreen = document.getElementById('endScreen');
-        let startScreen = document.getElementById('startScreen');
-        let categories = document.getElementById('categories');
-        endScreen.classList.add('hidden');
-        startScreen.classList.remove('hidden');
-        categories.classList.remove('hidden');
-        //if a category is selected load the questions for that category
-        categories.addEventListener('click', pickCategory);
-    });
 };
 
-//run game ----------------------------------------------------------------------------------------------
+//event listeners ----------------------------------------------------------------------------------------------
 
 let categories = document.querySelectorAll('.category');
 //if a category is selected load the questions for that category
 categories.forEach(button => {
     button.addEventListener('click', pickCategory);
+});
+
+let startButton = document.getElementById('startButton');
+//if start button is clicked start the game
+startButton.addEventListener('click', startGame);
+
+let buttons = document.querySelectorAll('.answer');
+//add event listener to each answer button to check if the selected answer is correct
+buttons.forEach(button => {
+    button.addEventListener('click', checkAnswer);
+});
+
+let restartButton = document.getElementById('restartButton');
+//if restart button is clicked start a new game
+restartButton.addEventListener('click', startGame);
+
+let categoriesButton = document.getElementById('changeCategoryButton');
+//if change category button is clicked show the category screen 
+categoriesButton.addEventListener('click', function() {
+    //hide end screen and show starting screen and category options
+    let endScreen = document.getElementById('endScreen');
+    let startScreen = document.getElementById('startScreen');
+    let categories = document.getElementById('categories');
+    endScreen.classList.add('hidden');
+    startScreen.classList.remove('hidden');
+    categories.classList.remove('hidden');
 });
