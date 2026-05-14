@@ -51,6 +51,7 @@ const pickCategory = event => {
     gameScreen.classList.add('hidden');
     endScreen.classList.add('hidden');
     categories.classList.remove('hidden');
+    startButton.classList.add('hidden');
     let category = event.target.textContent;
     //load set of questions from selected category
     if(category === 'General Knowledge') {
@@ -64,9 +65,20 @@ const pickCategory = event => {
     } else if(category === 'Geography') {
         loadQuestions('https://opentdb.com/api.php?amount=50&category=22&type=multiple');
     }
-    let startButton = document.getElementById('startButton');
+    categories.classList.add('hidden');
+    let selectedCategory = document.getElementById('selectedCategory');
+    //show the selected category above the start button
+    selectedCategory.textContent = 'Category: ' + category;
+    selectedCategory.classList.remove('hidden');
     //show start button to start the game
     startButton.classList.remove('hidden');
+    Array.from(endScreen.children).forEach(child => {
+        //hide all elements on the end screen
+        child.classList.add('hidden');
+    });
+    //show only change category button to change the category for the next game
+    categoriesButton.classList.remove('hidden');
+    endScreen.classList.remove('hidden');
 };
 
 /**
@@ -80,13 +92,15 @@ const startGame = event => {
     let gameScreen = document.getElementById('gameScreen');
     let endScreen = document.getElementById('endScreen');
     let categories = document.getElementById('categories');
-    let startButton = document.getElementById('startButton');
     //only show the game screen and hide all other screens
     startScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
     endScreen.classList.add('hidden');
     categories.classList.add('hidden');
-    startButton.classList.add('hidden');
+    Array.from(endScreen.children).forEach(child => {
+        //unhide all elements on the end screen
+        child.classList.remove('hidden');
+    });
     //randomize order of questions
     myQuestions.sort(() => Math.random() - 0.5);
     //show question and answers
@@ -264,7 +278,10 @@ categoriesButton.addEventListener('click', function() {
     let endScreen = document.getElementById('endScreen');
     let startScreen = document.getElementById('startScreen');
     let categories = document.getElementById('categories');
+    let selectedCategory = document.getElementById('selectedCategory');
     endScreen.classList.add('hidden');
     startScreen.classList.remove('hidden');
     categories.classList.remove('hidden');
+    startButton.classList.add('hidden');
+    selectedCategory.classList.add('hidden');
 });
