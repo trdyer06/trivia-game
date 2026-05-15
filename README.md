@@ -30,5 +30,8 @@ JavaScript ES6
 - Score and high-score trackers
 - Multiple categories for questions
 - Randomized question and answer orders
-- Questions from `opentdb.com`
 - Visual feedback for answers
+
+### Data Source
+
+Questions provided by `opentdb.com`
