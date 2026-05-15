@@ -2,6 +2,12 @@
 
 A simple timed trivia game for people interested in topics like sports, animals, geography, and more.
 
+## Demo
+
+[Starting Screen](C:\Users\trdye\OneDrive\Documents\GitHub\trivia-game\images\openingScreen.png)
+[Mid-Game Screen](C:\Users\trdye\OneDrive\Documents\GitHub\trivia-game\images\gameScreen.png)
+[Ending Screen](C:\Users\trdye\OneDrive\Documents\GitHub\trivia-game\images\endScreen.png)
+
 ## Installation
 
 Clone the repository
