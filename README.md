@@ -20,9 +20,9 @@ Open `index.html` in browser
 
 ## Tech Stack
 
-HTML5
-CSS3
-JavaScript ES6
+- HTML5 - Structure
+- CSS3 - Styling and animations
+- JavaScript ES6 - Game logic and API integration
 
 ## Features
 
@@ -31,6 +31,13 @@ JavaScript ES6
 - Multiple categories for questions
 - Randomized question and answer orders
 - Visual feedback for answers
+
+### How to play
+
+- Select the category from which you want to be asked questions
+- Start the game
+- Select the correct answer for as many questions as you can in 30 seconds
+- Play again with questions in the same category or play with a different category
 
 ### Data Source
 
