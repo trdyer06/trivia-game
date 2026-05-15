@@ -41,7 +41,7 @@ const loadQuestions = async (questionLink) => {
  * Gets questions from API based on desired category and starts the game when the start button is clicked.
  * @param {MouseEvent} event - click event on a category button
  */
-const pickCategory = event => {
+const pickCategory = async event => {
     let gameScreen = document.getElementById('gameScreen');
     let endScreen = document.getElementById('endScreen');
     let categories = document.getElementById('categories');
@@ -53,20 +53,16 @@ const pickCategory = event => {
     let category = event.target.textContent;
     //load set of questions from selected category
     if(category === 'General Knowledge') {
-        loadQuestions('https://opentdb.com/api.php?amount=50&category=9&type=multiple');
+        await loadQuestions('https://opentdb.com/api.php?amount=50&category=9&type=multiple');
     } else if(category === 'Sports') {
-        loadQuestions('https://opentdb.com/api.php?amount=50&category=21&type=multiple');
+        await loadQuestions('https://opentdb.com/api.php?amount=50&category=21&type=multiple');
     } else if(category === 'Animals') {
-        loadQuestions('https://opentdb.com/api.php?amount=50&category=27&type=multiple');
+        await  loadQuestions('https://opentdb.com/api.php?amount=50&category=27&type=multiple');
     } else if(category === 'History') {
-        loadQuestions('https://opentdb.com/api.php?amount=50&category=23&type=multiple');
+        await loadQuestions('https://opentdb.com/api.php?amount=50&category=23&type=multiple');
     } else if(category === 'Geography') {
-        loadQuestions('https://opentdb.com/api.php?amount=50&category=22&type=multiple');
+        await loadQuestions('https://opentdb.com/api.php?amount=50&category=22&type=multiple');
     }
-    if(myQuestions.length === 0) {
-        alert("Please wait 5 seconds and click the category again.");
-        return;
-    } else {
     //hide category buttons after once is selected
     categories.classList.add('hidden');
     let selectedCategory = document.getElementById('selectedCategory');
@@ -82,7 +78,6 @@ const pickCategory = event => {
     //show the change category button to change the category for the next game
     categoriesButton.classList.remove('hidden');
     endScreen.classList.remove('hidden');
-}
 };
 
 /**
@@ -107,7 +102,7 @@ const startGame = event => {
     myQuestions.sort(() => Math.random() - 0.5);
     //show question and answers
     askQuestions();
-}
+};
 
 //during game ----------------------------------------------------------------------------------------------
 
@@ -117,7 +112,7 @@ const startGame = event => {
 const askQuestions = () => {
     printQuestion();
     printAnswers();
-}
+};
 
 /**
  * Prints the question and the points for a correct answer.
