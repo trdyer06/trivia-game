@@ -8,3 +8,4 @@ Clone the repository
 ```bash
 git clone https://github.com/trdyer06/trivia-game.git
 ```
+Open `index.html` in browser
