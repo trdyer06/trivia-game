@@ -42,3 +42,7 @@ Open `index.html` in browser
 ### Data Source
 
 Questions provided by `opentdb.com`
+
+### License
+
+This project is licensed under the MIT License
