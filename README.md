@@ -4,9 +4,9 @@ A simple timed trivia game for people interested in topics like sports, animals,
 
 ## Demo
 
-![Starting Screen](images\openingScreen.png)
-![Mid-Game Screen](images\gameScreen.png)
-![Ending Screen](images\endScreen.png)
+![Starting Screen](./images/openingScreen.png)
+![Mid-Game Screen](./images/gameScreen.png)
+![Ending Screen](./images/endScreen.png)
 
 ![Live Site]
 
