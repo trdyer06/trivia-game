@@ -23,3 +23,4 @@ JavaScript ES6
 - Multiple categories for questions
 - Randomized question and answer orders
 - Questions from `opentdb.com`
+- Visual feedback for answers
