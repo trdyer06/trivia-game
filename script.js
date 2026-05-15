@@ -5,7 +5,7 @@ let longestStreak = 0;
 /**
  * Array to hold questions and answers.
  */
-let myQuestions = [];
+let myQuestions = ['placeholder'];
 
 //before game ----------------------------------------------------------------------------------------------
 
@@ -14,8 +14,6 @@ let myQuestions = [];
  * @param {string} questionLink - url to fetch questions from API
  */
 const loadQuestions = async (questionLink) => {
-    //clear myQuestions array for next game
-    myQuestions = [];
     //fetch questions from API
     const response = await fetch(questionLink);
     const data = await response.json();
@@ -65,6 +63,10 @@ const pickCategory = event => {
     } else if(category === 'Geography') {
         loadQuestions('https://opentdb.com/api.php?amount=50&category=22&type=multiple');
     }
+    if(myQuestions.length === 0) {
+        alert("Please wait 5 seconds and click the category again.");
+        return;
+    } else {
     //hide category buttons after once is selected
     categories.classList.add('hidden');
     let selectedCategory = document.getElementById('selectedCategory');
@@ -80,6 +82,7 @@ const pickCategory = event => {
     //show the change category button to change the category for the next game
     categoriesButton.classList.remove('hidden');
     endScreen.classList.remove('hidden');
+}
 };
 
 /**
@@ -283,4 +286,6 @@ categoriesButton.addEventListener('click', function() {
     categories.classList.remove('hidden');
     startButton.classList.add('hidden');
     selectedCategory.classList.add('hidden');
+    //clear myQuestions array for next game
+    myQuestions = [];
 });
