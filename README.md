@@ -13,9 +13,10 @@ A simple timed trivia game for people interested in topics like sports, animals,
 ## Installation
 
 Clone the repository
+
 ```bash
 git clone https://github.com/trdyer06/trivia-game.git
-```
+``
 Open `index.html` in browser
 
 ## Tech Stack
