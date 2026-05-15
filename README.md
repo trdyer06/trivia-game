@@ -8,7 +8,7 @@ A simple timed trivia game for people interested in topics like sports, animals,
 ![Mid-Game Screen](./images/gameScreen.png)
 ![Ending Screen](./images/endScreen.png)
 
-![Live Site]
+![Play Thomas' Trivia Game](https://trdyer06.github.io/trivia-game/)
 
 ## Installation
 
